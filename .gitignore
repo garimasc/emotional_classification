@@ -2,6 +2,7 @@
 /data/data_1
 /data/data_2
 /data/data_3
+/data/lemmatized_dev_data.csv
 /.ipynb_checkpoints
 data/~$reference.xlsx
 /data/poem
