@@ -8,3 +8,4 @@ data/~$reference.xlsx
 /data/poem
 GoogleNews-vectors-negative300.bin.gz
 GoogleNews-vectors-negative300.bin
+src/__pycache__/preprocess.cpython-310.pyc
