@@ -1,4 +1,11 @@
 import re
+import spacy
+nlp = spacy.load("en_core_web_sm", disable=["tagger","parser", "ner"])
+
+from nltk.corpus import stopwords
+stop_words = list(stopwords.words('english'))
+
+from tqdm import tqdm
 
 # Clean text
 def clean_text(text):
@@ -35,3 +42,11 @@ def clean_text(text):
     text = emoji_url.sub(r'', text)
 
     return text
+    
+# lemmatize text using spacy
+def lemmatize_text(text):
+    return [" ".join([token.lemma_ for token in doc if token not in stop_words]) for doc in
+            tqdm(nlp.pipe(text.str.lower(), batch_size=32, n_process=3)) ]
+
+
+
