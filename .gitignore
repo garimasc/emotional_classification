@@ -9,3 +9,5 @@ data/~$reference.xlsx
 GoogleNews-vectors-negative300.bin.gz
 GoogleNews-vectors-negative300.bin
 src/__pycache__/preprocess.cpython-310.pyc
+models/w2v_logreg.pkl
+models/w2v_svc.pkl
