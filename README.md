@@ -73,8 +73,12 @@ TF-IDF stands for Text Frequency - Inverse Document Frequency and is based on th
 4. Decision Trees and Random Forest
 
 <p align="center">
-<img src="images/decision_tree_depth_5.png" width="500">
+<img src="images/tfidf_recall_accuracy.png" width ="500">
 </p>
+
+<!-- <p align="center">
+<img src="images/decision_tree_depth_5.png">
+</p> -->
 
 #### Evaluating Logistic Regression Classifier
 
@@ -83,7 +87,7 @@ TF-IDF stands for Text Frequency - Inverse Document Frequency and is based on th
 [Insert Classification Accuracy for Validation data here]
 
 <p align="center">
-<img src="images/tfidf_feature_importance.png" width="700">
+<img src="images/tfidf_feature_importance.png">
 </p>
 
 ### Word2Vec and Classification using Logistic Regression
