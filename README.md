@@ -10,7 +10,7 @@ In this project, I attempt to classify the predominant emotion expressed in Engl
 I have always been curious about understanding more about human behaviour, and using data as the means to do so. The initial idea behing this project was sparked by watching *Inside Out 2* earlier this summer, and my motivation here is to strengthen my foundation in classification techniques, and build my skill-set in text analytics and Natural Language Processing (NLP).
 
 ## Data Overview
-The data for this project was sources from 2 different labeled Kaggle datasets:
+The data for this project was sourced from 3 different labeled Kaggle datasets:
 1. **Emotion Classification NLP:** 7000 rows with 4 labeled emotions: anger, fear, joy, sadness
 
     https://www.kaggle.com/datasets/anjaneyatripathi/emotion-classification-nlp/data
@@ -55,11 +55,36 @@ Before building any models, we want to see are there any words that are more com
 <p align="center">
 <img src="images/wordclouds.png" width="700">
 </p>
+
 As we would intuitively expect, words like 'anxious', 'scared', 'afraid' are common in texts with the label *fear*, and 'impreseed', 'curious', 'amazed' are common in texts with the label *surprise*. However, there are also words like 'could' and 'things' that appear to be common in multiple emotion labels.
 
 ## Models
+We need to convert text into finite length vectors to be able to train our machine learning models.
 
 ### TF-IDF and Classification
+TF-IDF stands for Text Frequency - Inverse Document Frequency and is based on the Bag of Words (BoW) approach, which simply counts the occurence of words in a document. TF-IDF contains insights about the less relevant and more relevant words in a document. Words that appear more frequently across documents (in this case, tweets) are given less weight/importance.
+
+1. Multinomial NB
+
+2. Logistic Regression
+
+3. Support Vector Classifier
+
+4. Decision Trees and Random Forest
+
+<p align="center">
+<img src="images/decision_tree_depth_5.png" width="500">
+</p>
+
+#### Evaluating Logistic Regression Classifier
+
+[Insert ROC Curves for test data here]
+
+[Insert Classification Accuracy for Validation data here]
+
+<p align="center">
+<img src="images/tfidf_feature_importance.png" width="700">
+</p>
 
 ### Word2Vec and Classification using Logistic Regression
 
