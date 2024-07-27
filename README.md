@@ -24,7 +24,7 @@ The data for this project was sources from 2 different labeled Kaggle datasets:
 
 
 <p align="center">
-<img src="images/data_by_source.png" width="700>
+<img src="images/data_by_source.png" width="700">
 </p>
 
 After aggregating data from all the sources, we have an aggregated dataset with ~444k rows, and the pie chart below displays the breakdown of emotion labels in final dataset. *Joy* is the most represented emotion in 33.7% of observations, followed by *sadness* at 29%. The least detected emotion is *surprise* in only 3.5% of the observations. 
@@ -37,11 +37,25 @@ It is worth noting this imbalance in the dataset because it influences how we de
 
 We split this aggregated data into development (75%) and validation (25%) datasets. The former will be split into training and test sets in the model development stage. The validation set will not be used to build models, only to evaluate them.
 
-### Word Clouds
+### Clean and Pre-process Data
+This involves the following steps:
+
+1. **Removing unncessary data:** This involves removing any punctuation marks, URLs/HTML links, numbers, special characters, and emojis from the texts. 
+
+2. **Convert to Lowercase**
+
+3. **Lemmatization:** We use the spaCy english model to tokenize and lemmatize the words.
+
+4. **Stop Words:** In addition to the nltk english stop words corpus, we include a few additional words like *'feel'*, *'think*', *'like'*, and so on which are very common in our dataset.
+
+
+### Word Cloud
+Before building any models, we want to see are there any words that are more commonly associated with a certain emotion, and to visualize this, we plot the wordclouds of texts with each emotion label.
 
 <p align="center">
 <img src="images/wordclouds.png" width="700">
 </p>
+As we would intuitively expect, words like 'anxious', 'scared', 'afraid' are common in texts with the label *fear*, and 'impreseed', 'curious', 'amazed' are common in texts with the label *surprise*. However, there are also words like 'could' and 'things' that appear to be common in multiple emotion labels.
 
 ## Models
 
