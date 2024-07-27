@@ -22,8 +22,9 @@ The data for this project was sources from 2 different labeled Kaggle datasets:
 3. **Emotions:** Over 400k rows with all 6 emotion labels.
     https://www.kaggle.com/datasets/nelgiriyewithana/emotions
 
+
 <p align="center">
-<img src="images/data_by_source.png" height="150">
+<img src="images/data_by_source.png" width="700>
 </p>
 
 After aggregating data from all the sources, we have an aggregated dataset with ~444k rows, and the pie chart below displays the breakdown of emotion labels in final dataset. *Joy* is the most represented emotion in 33.7% of observations, followed by *sadness* at 29%. The least detected emotion is *surprise* in only 3.5% of the observations. 
@@ -31,7 +32,7 @@ After aggregating data from all the sources, we have an aggregated dataset with 
 It is worth noting this imbalance in the dataset because it influences how we decide to score our classification models in the later steps.
 
 <p align="center">
-<img src="images/pct_emotions_final_data.png" width="200">
+<img src="images/pct_emotions_final_data.png" width="300">
 </p>
 
 We split this aggregated data into development (75%) and validation (25%) datasets. The former will be split into training and test sets in the model development stage. The validation set will not be used to build models, only to evaluate them.
@@ -39,7 +40,7 @@ We split this aggregated data into development (75%) and validation (25%) datase
 ### Word Clouds
 
 <p align="center">
-<img src="images/wordclouds.png" width="500">
+<img src="images/wordclouds.png" width="700">
 </p>
 
 ## Models
