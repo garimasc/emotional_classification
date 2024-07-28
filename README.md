@@ -76,6 +76,10 @@ TF-IDF stands for Text Frequency - Inverse Document Frequency and is based on th
 <img src="images/tfidf_recall_accuracy.png" width ="500">
 </p>
 
+<p align="center">
+<img src="images/precision_recall_tfidf.png" width ="850">
+</p>
+
 <!-- <p align="center">
 <img src="images/decision_tree_depth_5.png">
 </p> -->
