@@ -86,9 +86,9 @@ TF-IDF stands for Text Frequency - Inverse Document Frequency and is based on th
 
 #### Evaluating Logistic Regression Classifier
 
-[Insert ROC Curves for test data here]
-
-[Insert Classification Accuracy for Validation data here]
+<p align="center">
+<img src="images/tfidf_logreg_validation.png", width= "400">
+</p>
 
 <p align="center">
 <img src="images/tfidf_feature_importance.png">
