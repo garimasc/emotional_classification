@@ -1,13 +1,14 @@
 # Classifying emotions in English social media texts
 ### Capstone Project for UC Berkeley ML/AI Professional Certificate)
-
-In this project, I attempt to classify the predominant emotion expressed in English social media texts into 6 categories: anger (0), fear (1), joy (2), love (3), sadness (4) and surprise (5).
+This project aims to develop a robust classification model to identify predominant emotion in English texts. By leveraging advanced machine learning techniques and natural language processing algorithms, we attempt to discern emotional undertones and categorize them into distinct states: anger (0), fear (1), joy (2), love (3), sadness (4) and surprise (5). The models will be trained on a large corpus of annotated texts to ensure high accuracy and generalizability. 
 
 <p align="center">
 <img src="images/inside_out_2.webp" width="300" height="200">
 </p>
 
-I have always been curious about understanding more about human behaviour, and using data as the means to do so. The initial idea behind this project was sparked by watching *Inside Out 2* earlier this summer, and my motivation here is to strengthen my foundation in classification techniques, and build my skill-set in text analytics and Natural Language Processing (NLP).
+ Understanding emotion in English texts is fascinating because it unlocks insights into human feelings, intentions, and social dynamics that are often subtle and complex.The initial idea behind this project was sparked by watching *Inside Out 2* earlier this summer, and my motivation here is to strengthen my foundation in classification techniques, and build my skill-set in text analytics and Natural Language Processing (NLP).
+
+ By analyzing emotional undertones, NLP can enhance user experiences across various applications, such as improving customer service through empathetic responses, refining content recommendations based on emotional context, and so on. This capability not only helps in personalizing interactions but also in building more intuitive and supportive technologies that resonate with users on a deeper level.
 
 ## Data Overview
 The data for this project was sourced from 3 different labeled Kaggle datasets:
@@ -38,19 +39,19 @@ It is worth noting this imbalance in the dataset because it influences how we de
 We split this aggregated data into development (75%) and validation (25%) datasets. The former will be split into training and test sets in the model development stage. The validation set will not be used to build models, only to evaluate them.
 
 ### Clean and Pre-process Data
-This involves the following steps:
+NLP preprocessing typically involves the following steps:
 
-1. **Removing unncessary data:** This involves removing any punctuation marks, URLs/HTML links, numbers, special characters, and emojis from the texts. 
+1. **Removing unncessary data:** Remove any punctuation marks, URLs/HTML links, numbers, special characters, and emojis.
 
-2. **Convert to Lowercase**
+2. **Convert to Lowercase:** Ensures uniformity and avoid treating the same word in different cases as distinct
 
 3. **Lemmatization:** We use the spaCy english model to tokenize and lemmatize the words.
 
-4. **Stop Words:** In addition to the nltk english stop words corpus, we include a few additional words like *'feel'*, *'think*', *'like'*, and so on which are very common in our dataset.
+4. **Stop Words:** In addition to the nltk English stop words, we include words like *'feel'*, *'think*', *'like'*, and so on which are very common in our dataset.
 
 
 ### Word Cloud
-Before building any models, we want to see are there any words that are more commonly associated with a certain emotion, and to visualize this, we plot the wordclouds of texts with each emotion label.
+Before building any models, we want to see are there any words that are more commonly associated with a certain emotion.
 
 <p align="center">
 <img src="images/wordclouds.png" width="700">
