@@ -175,9 +175,15 @@ So far the best model is a One-vs-Rest Logistic Regression using TF-IDF embeddin
 
 **BERT** (Bidirectional Encoder Representations from Transformers) is a transformer-based model designed for natural language understanding, introduced by Google. Unlike traditional models that read text sequentially (left-to-right or right-to-left), BERT reads text in both directions simultaneously, capturing the context from both sides of a word or token. This bidirectional approach allows BERT to understand the meaning of words based on their full context, leading to improved performance. 
 
-[Insert charts here realted to accuracy and loss]
+<p align="center">
+<img src="images/bert_training_validation.png" height = "250">
+</p>
 
-[Compare recall/acuuracy metrics to log reg and plot precision recall curve]
+#### Outperforms Logistic Regression with TF-IDF Vectorization
+<p align="center">
+<img src="images/tfidf_w2v_bert.png" height = "200">
+<img src="images/bert_precision_recall_curve.png" height = "200">
+</p>
 
 ## What is accuracy?
 Classify a completely new dataset of 10 personal social media posts and see if they are classified correctly by the models.
