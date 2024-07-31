@@ -95,6 +95,14 @@ TF-IDF stands for Text Frequency - Inverse Document Frequency and is based on th
 </p>
 
 ### Word2Vec and Classification using Logistic Regression
+While TF-IDF gives us an understanding of relative importance of words, it fails to capture any semantic understanding of the words in a text. For e.g. the following two sentences, *I prefer going out over staying in.* and *I prefer staying in over going out.* would have the exact same representation with TF-IDF vectorizer, whereas their meaning is completely different and conveys two very different kinds of personalities.
+
+In order to tackle this issue, we experiment with Word2Vec embeddings which, as the name implies, transforms a word into a vector of specified size. To train the model, we use an unsupervised learning technique which scans the entire corpus, and in this process the model determines which words the target word occurs with more often and captures the semantic closeness of the words to each other. Additionally, unlike BoW and TF-IDF transformer, the size of the vector does not have to be as large the number of features/words in our corpus. The model loses some of the interpretability because of this, but we achieve significant gains in terms of computational efficiency.
+
+*<u>Note</u>:* We still pre-process the text, but for this model we do not use lemmatization.
+
+#### Google News vs Custom Trained Word2Vec Model
+To generate embeddings, we experiment with both Google's model which was trained on a huge corpus of Google News, and our custom model which learns from the training sample of our dataset.
 
 ### BERT Transformer and Keras for Classification
 
