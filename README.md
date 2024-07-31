@@ -62,69 +62,66 @@ As we would intuitively expect, words like 'anxious', 'scared', 'afraid' are com
 We need to convert text into finite length vectors to be able to train our machine learning models.
 
 ### TF-IDF and Classification
-TF-IDF stands for Text Frequency - Inverse Document Frequency and is based on the Bag of Words (BoW) approach, which simply counts the occurence of words in a document. TF-IDF contains insights about the less relevant and more relevant words in a document. Words that appear more frequently across documents (in this case, tweets) are given less weight/importance. **It highlights words that are frequent in a specific document but rare across the entire corpus, emphasizing their significance for that document.**
+TF-IDF stands for Text Frequency - Inverse Document Frequency and is based on the Bag of Words (BoW) approach, which simply counts the occurence of words in a document. TF-IDF contains insights about the relevancy of words in a documents. It highlights words that are frequent in a specific document (in this case, tweet/text) but rare across the entire corpus, emphasizing their significance.
 
-1. Multinomial NB: **Multinomial Naive Bayes is a classification algorithm based on Bayes' theorem that assumes features are distributed according to a multinomial distribution, typically used for text classification where features are word counts or frequencies. It calculates the probability of a document belonging to each class by considering the likelihood of each word given the class and applying Bayes' theorem to make predictions.**
+After converting texts into a vector representation using TF-IDF, we experiment with a variety of classification techniques:
 
-2. Logistic Regression
+- **Multinomial Naive Bayes**: A classification algorithm based on Bayes' theorem that assumes features are distributed according to a multinomial distribution. This is typically used for text classification where features are word counts or frequencies. It calculates the probability of a document belonging to each class by considering the likelihood of each word given the class and applying Bayes' theorem to make predictions.
 
-3. Support Vector Classifier
+- **Logistic Regression**: This is a linear model used for binary classification tasks which estimates the probability that a given input belongs to a certain class. We use this for multi-class classification using 6 One-vs-Rest classifiers, one for each emotion label.
 
-4. Decision Trees and Random Forest
+- **Support Vector Machines**: SVMs work by finding the hyperplane that best separates the classes in the feature space with the maximum margin. While non-linear hyperplanes are possible, for our project we use a linear kernel.
 
-<b>Here are four widely used machine learning classification algorithms, each with its own strengths and suitable applications:
+- **Decision Trees and Random Forests**: Decision trees build a model by recursively splitting the data into subsets based on the most informative features. They are easy to interpret and visualize but can be prone to overfitting. Random Forests is an ensemble approach that combines multiple decision trees using bootstrapped samples of the data and aggregates those to make the final classification. It helps mitigate overfitting and is robust to noise.
 
-1. **Logistic Regression**: Despite its name, logistic regression is a linear model used for binary classification tasks. It estimates the probability that a given input belongs to a certain class by applying the logistic function to a linear combination of the input features. It's particularly useful for problems where the relationship between features and the outcome is approximately linear.
+#### How to measure classification performance?
 
-2. **Decision Trees**: Decision trees build a model by recursively splitting the data into subsets based on the most informative features. Each node in the tree represents a feature and a threshold, leading to different branches based on the feature values, and the leaves represent the class labels. They are easy to interpret and visualize but can be prone to overfitting.
+Accuracy, as the name implies, is the percentage of labels that are classified correctly. While a higher accuracy sore is always better, but in cases of highly imbalanced data, this may not capture the model performance accurately. 
 
-3. **Random Forest**: An ensemble method that combines multiple decision trees to improve classification performance. Random Forest builds a multitude of decision trees using bootstrapped samples of the data and aggregates their predictions, typically through voting, to make the final classification. It helps mitigate overfitting and is robust to noise.
+$$Recall = \frac{True Positives}{True Positives + False Negatives}$$
 
-4. **Support Vector Machines (SVM)**: SVMs work by finding the hyperplane that best separates the classes in the feature space with the maximum margin. For non-linearly separable data, SVMs can use kernel functions to map the data into a higher-dimensional space where a linear separation is possible. They are effective for both linear and non-linear classification tasks and are known for their strong performance in high-dimensional spaces.
+We choose to look at recall, in addition to accuracy, since a false negative does not have a higher cost compared to a false positive. In simple terms, *recall*, for a specific class, is the percentage of labels with that class that are classified correctly. 
 
-Each algorithm has its own strengths and weaknesses, and the choice of algorithm often depends on the specific characteristics of the data and the problem being solved.
-
-
-In multi-class classification:
-
-- **Macro-averaging** computes metrics (like precision, recall, or F1 score) for each class independently and then takes the average, treating all classes equally regardless of their size. This approach can highlight performance on smaller or less frequent classes.
-
-- **Micro-averaging** aggregates the contributions of all classes to compute metrics, effectively treating each individual prediction equally, which is useful when dealing with imbalanced datasets as it emphasizes overall performance rather than class-specific performance.
-</b>
 
 <p align="center">
 <img src="images/tfidf_recall_accuracy.png" width ="500">
 </p>
 
-<b>A precision-recall curve is a graphical representation of a classification model's performance, plotting precision against recall for various threshold values, helping to evaluate the trade-off between correctly identifying positive instances and minimizing false positives.
-**Precision** measures the proportion of true positive predictions among all positive predictions made by the model.  
-**Recall** measures the proportion of true positive predictions among all actual positive instances in the data.</b>
+Using TF-IDF vectorization, even a simple (and fast) multinomial naive-bayes model has a high accuracy of 86% on the test data. However, if we look at recall by class, this model severly underperforms for *love* and *surprise* class labels, which are under-represneted in the data. SVM has an accuracy comparable to that of Logistic Regression, but again the recall metrics are lower for less frequent classes.
 
+#### Precision Recall Curve
+A precision-recall curve is a graphical representation of a classification model's performance, plotting precision against recall for various threshold values, helping to evaluate the trade-off between correctly identifying positive instances and minimizing false positives.
+
+$$Precision = \frac{True Positives}{True Positives + False Positives}$$
 <p align="center">
 <img src="images/precision_recall_tfidf.png" width ="850">
 </p>
+
+The image corroborates with the story, that <u>**Logistic Regression** seems to be the best classifier for TF-IDF vectorization</u>, particularly beacuse of higher recall and accuracy in the underreprsented class labels.
+
 
 <!-- <p align="center">
 <img src="images/decision_tree_depth_5.png">
 </p> -->
 
-#### Evaluating Logistic Regression Classifier
+#### Evaluating Logistic Regression Classifier using Validation Data
+
+We kept 25% of the total data (~100k observations) separate to be used as a validation dataset to evaluate performance. TF-IDF vectorization + Logistic Regression classifier has a 89% accuracy of this data, and recall/precision/f1 metrics similar to the test dataset.
 
 <p align="center">
 <img src="images/tfidf_logreg_validation.png", width= "400">
 </p>
 
+One advantage of using TF-IDF vectorization is the high interpretability of the classification problems. For each emotion label, the image below highlights the 15 most important features.
+
 <p align="center">
 <img src="images/tfidf_feature_importance.png">
 </p>
 
-### Word2Vec and Classification using Logistic Regression
+### Word2Vec Embeddings and Classification using SVM/Logistic Regression
+There are two distinct disadvantages of using TF-IDF vectorization.It is a statistical measure with an understanding of relative importance of words, but it fails to capture any semantic understanding of the words in a text. Additionaly, the vector representations are sparse, and can have very high dimensionality. 
 
-*TF-IDF (Term Frequency-Inverse Document Frequency) and Word2Vec are both techniques used in natural language processing to represent text, but they do so in different ways. TF-IDF is a statistical measure that evaluates the importance of a word in a document relative to a collection of documents (corpus); it combines the term frequency (how often a word appears in a document) with the inverse document frequency (how rare the word is across the corpus), resulting in a weighted score that highlights unique and significant words. On the other hand, Word2Vec is a neural network-based approach that learns dense, continuous vector representations of words by capturing their contextual relationships through large corpora; words with similar meanings end up with similar vectors. While TF-IDF is useful for identifying keyword importance in a specific document, Word2Vec provides a richer, semantic understanding of word relationships.*
-
-While TF-IDF gives us an understanding of relative importance of words, it fails to capture any semantic understanding of the words in a text. For e.g. the following two sentences, *I prefer going out over staying in.* and *I prefer staying in over going out.* would have the exact same representation with TF-IDF vectorizer, whereas their meaning is completely different and conveys two very different kinds of personalities.
-
-In order to tackle this issue, we experiment with Word2Vec embeddings which, as the name implies, transforms a word into a vector of specified size. To train the model, we use an unsupervised learning technique which scans the entire corpus, and in this process the model determines which words the target word occurs with more often and captures the semantic closeness of the words to each other. Additionally, unlike BoW and TF-IDF transformer, the size of the vector does not have to be as large the number of features/words in our corpus. The model loses some of the interpretability because of this, but we achieve significant gains in terms of computational efficiency.
+On the other hand, Word2Vec is a neural network-based approach that learns dense, continuous vector representations of words by capturing their contextual relationships: words with similar meanings have similar vector representations. To train the model, we use an unsupervised learning technique which scans the entire corpus, and in this process the model determines which words the target word occurs with more often. The vector size does not have to be as large as the vocabulary ( we use 300), but we lose a lot of the interpretability.
 
 *<u>Note</u>:* We still pre-process the text, but for this model we do not use lemmatization.
 
@@ -173,12 +170,13 @@ While disappointing, this result is not entirely unexpected, due to a variety of
 
 ### BERT Transformer and Keras for Classification
 
-**BERT (Bidirectional Encoder Representations from Transformers) is a transformer-based model designed for natural language understanding, introduced by Google. Unlike traditional models that read text sequentially (left-to-right or right-to-left), BERT reads text in both directions simultaneously, capturing the context from both sides of a word or token. This bidirectional approach allows BERT to understand the meaning of words based on their full context, leading to improved performance on a range of NLP tasks such as question answering, sentiment analysis, and named entity recognition. BERT's pre-training on large text corpora followed by fine-tuning on specific tasks enables it to generate highly contextualized and nuanced representations of language, making it a powerful tool for various language understanding applications.
+So far the best model is a One-vs-Rest Logistic Regression using TF-IDF embeddings. To see if we can improve upon this performance, we experiment with a Neural Network classification model using BERT embeddings.
 
-BERT embeddings can be explained to a layman as follows: Imagine you’re trying to understand the meaning of a word in a sentence. BERT is like a super-smart reader that looks at the whole sentence before and after the word to figure out its exact meaning. Instead of just looking at the word alone, BERT understands it based on the context of the entire sentence, so it gets a much clearer picture of what’s being said. This helps it do a better job at tasks like answering questions or summarizing text because it really understands the context of each word in the sentence.
+**BERT** (Bidirectional Encoder Representations from Transformers) is a transformer-based model designed for natural language understanding, introduced by Google. Unlike traditional models that read text sequentially (left-to-right or right-to-left), BERT reads text in both directions simultaneously, capturing the context from both sides of a word or token. This bidirectional approach allows BERT to understand the meaning of words based on their full context, leading to improved performance. 
 
+[Insert charts here realted to accuracy and loss]
 
-Neural network classification is a machine learning approach where a network of interconnected nodes, or neurons, is trained to categorize data into predefined classes. Each neuron in the network processes input data through weighted connections and applies activation functions to transform the input into a meaningful output. During training, the network adjusts these weights based on the difference between its predictions and the actual class labels, using algorithms like backpropagation to minimize errors. The network learns to recognize patterns and features in the data, enabling it to classify new, unseen examples accurately. Essentially, neural network classification models are designed to identify and assign data to specific categories by learning from examples.**
+[Compare recall/acuuracy metrics to log reg and plot precision recall curve]
 
 ## What is accuracy?
 Classify a completely new dataset of 10 personal social media posts and see if they are classified correctly by the models.
