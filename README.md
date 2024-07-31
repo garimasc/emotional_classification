@@ -105,8 +105,8 @@ In order to tackle this issue, we experiment with Word2Vec embeddings which, as 
 To generate embeddings, we experiment with both Google's model which was trained on a huge corpus of Google News, and our custom model which learns from the training sample of our dataset.
 
 <p align="center">
-<img src="images/w2v_affectionate.png" height = "250">
-<img src="images/word2vec_similarity.png" height = "250">
+<img src="images/w2v_affectionate.png" height = "200">
+<img src="images/word2vec_similarity.png" height = "200">
 </p>
 
 ### BERT Transformer and Keras for Classification
