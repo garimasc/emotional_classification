@@ -130,18 +130,14 @@ In order to tackle this issue, we experiment with Word2Vec embeddings which, as 
 
 #### Google News vs Custom Trained Word2Vec Model
 
-<b>Using Google's pretrained Word2Vec model versus a custom-trained model has distinct advantages and trade-offs:
+Both of these approaches have distinct advantages and trade-offs:
 
-- **Google's Pretrained Word2Vec Model**: This model, trained on a large corpus like Google News, offers high-quality, general-purpose embeddings that capture a broad range of word meanings and relationships. It's convenient for many tasks, especially when data is limited, as it provides rich, pre-learned semantic information without the need for additional training.
+- **Google's Pretrained Model**: This model is trained on a large corpus like Google News, offers high-quality, general-purpose embeddings that can capture a broad range of word meanings and relationships. Using this model is convenient in case of limited data or computational constraints as it does not require additional training.
 
-- **Custom-Trained Word2Vec Model**: Training a custom model allows you to tailor the embeddings to the specific vocabulary and context of your dataset, which can capture domain-specific nuances and relationships more effectively. This is particularly beneficial for specialized or niche applications where general embeddings might not capture the relevant subtleties.
+- **Custom-Trained Model**: This approach allows us to tailor the embeddings to the specific vocabulary and context, which can capture domain-specific nuances and relationships more effectively. 
 
-Choosing between the two depends on your specific needs: pretrained models are great for general applications and save time, while custom models are advantageous for specialized tasks requiring domain-specific insights.
-</b>
+Since we are dealing with a very specific task here, and a large training sample of over 200k rows, the first instinct was to use a custom-trained model. However, when we look at the 10 words most similar to *affectionate*, it is evident that our custom-model is not able to capture the semantics of words very well. Most of the top 10 most similar words, in fact appear to be antonyms. For this reason, we are biased towards using the Google pre-trained model.
 
-
-
-To generate embeddings, we experiment with both Google's model which was trained on a huge corpus of Google News, and our custom model which learns from the training sample of our dataset, with approximately 200k observations. We look at the 10 words most similar to *'affectionate'*, and it is evident that Google's model performs much better at capturing the semantics here. In our custom model, there are a lot of words which could easily be the antonyms for *'affectionate'*.
 
 <p align="center">
 <img src="images/w2v_affectionate.png" height = "175">
@@ -149,11 +145,31 @@ To generate embeddings, we experiment with both Google's model which was trained
 
 #### Convert sentences to vectors
 
-*To convert Word2Vec word embeddings into sentence embeddings, you typically aggregate the individual word vectors to represent the entire sentence. This can be done by several methods: one common approach is to average the vectors of all words in the sentence, providing a single vector that captures the overall meaning. Alternatively, you might sum the word vectors, or use more sophisticated techniques like weighted averaging, where weights are based on term frequency or other factors. For improved sentence representation, you could also apply techniques such as concatenation or advanced models that build on Word2Vec, such as Doc2Vec or transformer-based models like BERT, which generate more nuanced sentence embeddings. These aggregated vectors then serve as the sentence embeddings, reflecting the combined semantic content of the words in the sentence.*
+To convert Word2Vec word embeddings into sentence embeddings, we have to aggregate the individual word vectors to represent the entire sentence. The most common approach to do so is to average the vectors of all the words in the sentence. Summing up the vectors can bias the results for sentences that are much longer. Alternatively, we can use weighted averaging, where weights are based on term frequency or other factors. 
+
+For our project, we use IDF (Inverse Document Frequency) weights to average the word vectors into a single sentence vector. This has the same advantage as TF-IDF of highlighting words that are present in a sentence, but infrequent across the entire corpus.
 
 <p align="center">
 <img src="images/word2vec_similarity.png" height = "250">
 </p>
+
+In the image above, we try to visualize the cosine similarity between sentences using Google's pre-trained and our custom-trained Word2Vec embeddings. We decide to proceed with the former, since our custom-trained model apprears to have higher similarity scores for different emotions, especially *anger*/*fear* and *sadness*/*surprise*. 
+
+#### Evaluating classification using Word2Vec
+
+We build two classification models using the Word2Vec embeddings: One-vs-Rest Logistic Regression and a Support Vector Classfier. Upon comparing the accuracy and recall metrics, it is evident that Word2Vec embedding models underperform across the board.
+
+<p align="center">
+<img src="images/tfidf_vs_w2v.png" height = "220">
+<img src="images/w2v_logreg_precision_recall.png" height = "220">
+</p>
+
+While disappointing, this result is not entirely unexpected, due to a variety of reasons:
+
+* *Sparse Dataset*: Despite having a large number of observations, we are dealing with a very limited vocabulary in our dataset. In such cases, TF-IDF may perform better because it directly measures term importance without relying on extensive context.
+* *Short Texts*: Since most of the texts we look at are under 100 words, TF-IDF’s term weighting is more straightforward as Word2Vec’s context-based embeddings may not be able to capture sufficient information in such scenarios.
+* *Domain-Specific Terminology*: We use Google News trained Word2Vec model, since our custom model did not do a great job at capturing semantics. However the disadvantage is that the training corpus does not accurately capture the relevance of words/terms.
+
 
 ### BERT Transformer and Keras for Classification
 
@@ -166,6 +182,31 @@ Neural network classification is a machine learning approach where a network of 
 
 ## What is accuracy?
 Classify a completely new dataset of 10 personal social media posts and see if they are classified correctly by the models.
+
+<b>
+1. **Anger**: "I can't believe you forgot my birthday again; this is unacceptable!"
+2. **Fear**: "I heard a noise in the dark and couldn’t stop my heart from racing."
+3. **Joy**: "Winning the championship was the happiest moment of my life!"
+4. **Love**: "Every moment spent with you feels like a beautiful dream come true."
+5. **Sadness**: "She felt an overwhelming sadness when she realized her old friend had moved away."
+6. **Surprise**: "I was completely taken aback when I walked into the party and saw everyone there!"
+7. **Anger**: "He slammed the door in frustration after the meeting went horribly wrong."
+8. **Fear**: "The thought of speaking in public made her stomach churn with anxiety."
+9. **Joy**: "Seeing the sunrise after a long night felt like a gift from the heavens."
+10. **Love**: "His sweet words and gentle touch made her fall deeper in love every day."
+
+Certainly! Here are ten more sentences, each reflecting one of the specified emotions:
+
+1. **Anger**: "I was furious when I discovered that someone had tampered with my work."
+2. **Fear**: "The eerie silence in the abandoned house made me shiver with dread."
+3. **Joy**: "The laughter of children playing in the park filled my heart with pure joy."
+4. **Love**: "Their long walks together in the moonlight showed how deeply they cared for each other."
+5. **Sadness**: "He felt a deep sadness as he watched the final credits roll on the movie he had loved."
+6. **Surprise**: "She was astonished to find a surprise letter from her old friend waiting on her desk."
+7. **Anger**: "The constant delays and excuses from the company made me lose my patience."
+8. **Fear**: "Driving through the foggy night, he could barely see a few feet ahead, feeling a chill of fear."
+9. **Joy**: "Her face lit up with joy when she saw the beautiful, unexpected gift."
+10. **Love**: "Every day, he made sure to remind her how much he loved her with little gestures and kind words."</b>
 
 ## Hierarchical Classification
 **Hierarchical classification is a structured approach to categorizing data where labels are organized in a tree-like structure, with broad categories divided into more specific subcategories. This method reflects a natural hierarchy, such as organizing documents into general topics and then into subtopics. 
