@@ -179,11 +179,17 @@ So far the best model is a One-vs-Rest Logistic Regression using TF-IDF embeddin
 <img src="images/bert_training_validation.png" height = "250">
 </p>
 
+With this model, we reach an accuracy of over **93%** on both the training and validation datasets.
+
 #### Outperforms Logistic Regression with TF-IDF Vectorization
+The Keras NN classifier using BERT embeddings significantly outperforms the Logistic Regression classifier with TF-IDF embeddings due to its ability to capture complex contextual information and nuanced relationships in the text. 
+
 <p align="center">
 <img src="images/tfidf_w2v_bert.png" height = "200">
 <img src="images/bert_precision_recall_curve.png" height = "200">
 </p>
+
+However, like other models, the classfier performs best for frequent labels like *joy*/*sadness*, and underperforms when it comes to *love*/*surprise*. We can clearly see this in the precision-recall curves above.
 
 ## Is our model accurate on external data?
 
@@ -195,26 +201,10 @@ We have over 400k samples in our dataset, out of which over 100k were kept aside
 
 A few things I would like to highlight here:
 
-- 2 of the mis-classified samples belong to the class *surprise*. Sinc eonly 3.5% of our training data belongs to this class, it makes sense that the classifier performs the worst here.
+- 2 of the mis-classified samples belong to the class *surprise*. Since only 3.5% of our training data belongs to this class, it makes sense that the classifier performs the worst here.
 - *Every moment spent with you feels like a beautiful dream come true.* is labeled as *love*, whereas the classfier identifies it as *joy*. This may not be entirely inaccurate as the text has a predominant joyous tone, however our model is unable to capture the romance embedded in the text.
 
 ## Next Steps
-
-<b>To address imbalanced data in machine learning, several sampling techniques can be used to balance the distribution of classes. Here are some common methods:
-
-1. **Oversampling**: This technique involves increasing the number of instances in the minority class to balance the class distribution. A popular method is **SMOTE (Synthetic Minority Over-sampling Technique)**, which creates synthetic examples of the minority class by interpolating between existing instances.
-
-2. **Undersampling**: This approach reduces the number of instances in the majority class to balance the dataset. **Random Undersampling** randomly removes samples from the majority class, while **Tomek Links** and **Edited Nearest Neighbors** are more sophisticated methods that aim to remove noisy or redundant majority class examples.
-
-3. **Hybrid Methods**: Combining both oversampling and undersampling techniques can be effective. For instance, **SMOTE + Tomek Links** first generates synthetic samples for the minority class and then cleans up the majority class by removing noisy instances.
-
-4. **Cost-sensitive Learning**: Instead of changing the dataset, this technique adjusts the learning algorithm to pay more attention to the minority class. **Cost-sensitive classifiers** assign higher costs to misclassifications of the minority class, thereby improving model performance on imbalanced data.
-
-5. **Cluster-based Oversampling**: Techniques like **Cluster Centroids** can be used to oversample by creating new instances based on clustering of the minority class, which helps in generating synthetic samples that are representative of the minority class.
-
-6. **Adaptive Synthetic Sampling (ADASYN)**: An extension of SMOTE, ADASYN generates synthetic samples focusing more on difficult-to-classify examples, which helps improve the classifier's performance on hard-to-learn regions of the feature space.
-
-Each technique has its own advantages and trade-offs, and the choice of method often depends on the specific characteristics of the dataset and the problem at hand.</b>
 
 
 
