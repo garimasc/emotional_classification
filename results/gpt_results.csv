@@ -1,0 +1,21 @@
+text,label,anger,fear,joy,love,sadness,surprise,pred_label
+I can't believe you forgot my birthday again; this is unacceptable!,anger,0.29279014,0.3652911,0.027548002,0.0002643354,0.31060147,0.0035049603,fear
+I heard a noise in the dark and couldn’t stop my heart from racing.,fear,0.00026555615,0.99677247,0.00022407972,6.9037036e-05,0.00070257206,0.001966224,fear
+Winning the championship was the happiest moment of my life!,joy,5.6996716e-05,0.0015359019,0.99595815,0.0001272542,0.0014808198,0.0008409109,joy
+Every moment spent with you feels like a beautiful dream come true.,love,8.366902e-05,0.00020297209,0.98217255,0.014258464,0.00055916474,0.0027231148,joy
+She felt an overwhelming sadness when she realized her old friend had moved away.,sadness,0.0006166841,0.006956805,0.017540468,0.0061116237,0.965462,0.0033123419,sadness
+I was completely taken aback when I walked into the party and saw everyone there!,surprise,0.004647332,0.49863434,0.018640397,0.00073274196,0.0057719112,0.47157326,fear
+He slammed the door in frustration after the meeting went horribly wrong.,anger,0.98777485,0.0052172327,5.068996e-05,1.3537906e-05,0.0069256537,1.7965767e-05,anger
+The thought of speaking in public made her stomach churn with anxiety.,fear,0.0048206504,0.9787544,0.0009321756,0.00015474754,0.014672579,0.000665483,fear
+Seeing the sunrise after a long night felt like a gift from the heavens.,joy,0.00015131143,0.0002308764,0.99320006,0.005334315,0.0006557391,0.0004276767,joy
+His sweet words and gentle touch made her fall deeper in love every day.,love,0.0024182731,0.011579255,0.45884684,0.48847663,0.035776198,0.002902821,love
+I was furious when I discovered that someone had tampered with my work.,anger,0.99099123,0.0058599054,0.00046217532,8.103769e-05,0.0024206785,0.00018504786,anger
+The eerie silence in the abandoned house made me shiver with dread.,fear,0.004901109,0.9675599,0.0021282,0.00045380596,0.010668449,0.014288633,fear
+The laughter of children playing in the park filled my heart with pure joy.,joy,2.648539e-05,0.00041904216,0.99579406,0.00066701206,0.00034222176,0.0027511797,joy
+Their long walks together in the moonlight showed how deeply they cared for each other.,love,0.0007648146,0.0047552655,0.22035436,0.7572024,0.01465444,0.0022687647,love
+He felt a deep sadness as he watched the final credits roll on the movie he had loved.,sadness,0.001004878,0.008416114,0.19092333,0.12880412,0.6657221,0.0051295296,sadness
+She was astonished to find a surprise letter from her old friend waiting on her desk.,surprise,0.020319773,0.17401077,0.5158509,0.012495077,0.097109586,0.1802139,joy
+The constant delays and excuses from the company made me lose my patience.,anger,0.8848283,0.041374117,0.0014967945,0.00023871104,0.07174584,0.00031624426,anger
+"Driving through the foggy night, he could barely see a few feet ahead, feeling a chill of fear.",fear,0.0107949,0.9847525,0.00047142978,0.00035953932,0.00051585864,0.0031058344,fear
+"Her face lit up with joy when she saw the beautiful, unexpected gift.",joy,4.2080746e-06,5.050541e-05,0.99750537,0.00014053573,3.794296e-05,0.0022614808,joy
+"Every day, he made sure to remind her how much he loved her with little gestures and kind words.",love,0.0017888928,0.0038236913,0.37963805,0.5905356,0.023350513,0.00086324627,love

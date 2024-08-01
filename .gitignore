@@ -11,3 +11,6 @@ GoogleNews-vectors-negative300.bin
 src/__pycache__/preprocess.cpython-310.pyc
 models/w2v_logreg.pkl
 models/w2v_svc.pkl
+results/~$Display_Tfidf_Results.xlsx
+results/~$Display Results.xlsx
+data/~$chatgpt_samples.xlsx
