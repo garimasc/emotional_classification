@@ -185,40 +185,18 @@ So far the best model is a One-vs-Rest Logistic Regression using TF-IDF embeddin
 <img src="images/bert_precision_recall_curve.png" height = "200">
 </p>
 
-## What is accuracy?
-Classify a completely new dataset of 10 personal social media posts and see if they are classified correctly by the models.
+## Is our model accurate on external data?
 
-<b>
-1. **Anger**: "I can't believe you forgot my birthday again; this is unacceptable!"
-2. **Fear**: "I heard a noise in the dark and couldn’t stop my heart from racing."
-3. **Joy**: "Winning the championship was the happiest moment of my life!"
-4. **Love**: "Every moment spent with you feels like a beautiful dream come true."
-5. **Sadness**: "She felt an overwhelming sadness when she realized her old friend had moved away."
-6. **Surprise**: "I was completely taken aback when I walked into the party and saw everyone there!"
-7. **Anger**: "He slammed the door in frustration after the meeting went horribly wrong."
-8. **Fear**: "The thought of speaking in public made her stomach churn with anxiety."
-9. **Joy**: "Seeing the sunrise after a long night felt like a gift from the heavens."
-10. **Love**: "His sweet words and gentle touch made her fall deeper in love every day."
+We have over 400k samples in our dataset, out of which over 100k were kept aside solely for validation. However, we are still dealing with a very limited vocabulary. In order to test the robustness of our classifier, I generated 20 completely new text samples using ChatGPT - and our model was able to classify 17 of them correctly.
 
-Certainly! Here are ten more sentences, each reflecting one of the specified emotions:
+<p align="center">
+<img src="images/prediction_gpt_samples.png" height = "450">
+</p>
 
-1. **Anger**: "I was furious when I discovered that someone had tampered with my work."
-2. **Fear**: "The eerie silence in the abandoned house made me shiver with dread."
-3. **Joy**: "The laughter of children playing in the park filled my heart with pure joy."
-4. **Love**: "Their long walks together in the moonlight showed how deeply they cared for each other."
-5. **Sadness**: "He felt a deep sadness as he watched the final credits roll on the movie he had loved."
-6. **Surprise**: "She was astonished to find a surprise letter from her old friend waiting on her desk."
-7. **Anger**: "The constant delays and excuses from the company made me lose my patience."
-8. **Fear**: "Driving through the foggy night, he could barely see a few feet ahead, feeling a chill of fear."
-9. **Joy**: "Her face lit up with joy when she saw the beautiful, unexpected gift."
-10. **Love**: "Every day, he made sure to remind her how much he loved her with little gestures and kind words."</b>
+A few things I would like to highlight here:
 
-## Hierarchical Classification
-**Hierarchical classification is a structured approach to categorizing data where labels are organized in a tree-like structure, with broad categories divided into more specific subcategories. This method reflects a natural hierarchy, such as organizing documents into general topics and then into subtopics. 
-
-In hierarchical classification, the model first predicts high-level categories and then uses those predictions to refine and predict more specific subcategories. For example, in classifying animals, a model might first determine if an animal is a mammal or a bird, and then further classify it into specific types like "cat" or "eagle."
-
-This hierarchical approach helps manage complex classification tasks by breaking them down into simpler, more manageable steps, ensuring that the predictions align with the structured relationships among categories.**
+- 2 of the mis-classified samples belong to the class *surprise*. Sinc eonly 3.5% of our training data belongs to this class, it makes sense that the classifier performs the worst here.
+- *Every moment spent with you feels like a beautiful dream come true.* is labeled as *love*, whereas the classfier identifies it as *joy*. This may not be entirely inaccurate as the text has a predominant joyous tone, however our model is unable to capture the romance embedded in the text.
 
 ## Next Steps
 
