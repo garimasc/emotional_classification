@@ -205,6 +205,12 @@ A few things I would like to highlight here:
 - *Every moment spent with you feels like a beautiful dream come true.* is labeled as *love*, whereas the classfier identifies it as *joy*. This may not be entirely inaccurate as the text has a predominant joyous tone, however our model is unable to capture the romance embedded in the text.
 
 ## Next Steps
+Moving forward, we can incorporate several techniques to increase the model classification and interpretation:
 
+1. Class Imbalance: To better handle underrepresented emotions like *surprise* and *love*, we will explore techniques such as oversampling (e.g., SMOTE), undersampling the majority classes, and adjusting class weights in the loss function. These methods can help improve recall for minority classes without sacrificing overall accuracy.
 
+2. Data Augmentation: As I mentioned before, while we have a large number of samples, most of them share a specific structure and a limited vocabulary. We would like to expand the dataset to include more varied sources of emotion-labeled texts to increase generalizability.
 
+3. Model Interpretability: Conducting a deeper error analysis will help identify patterns in misclassifications, particularly in cases where emotions like *love* and *joy* overlap.
+
+4. Real-Time Classification: Finally, integrating the model into a real-time emotion detection system for applications like sentiment analysis in customer service or social media monitoring could demonstrate its practical utility. Fine-tuning the model for such applications and evaluating its performance on live data will be the ultimate test of its effectiveness.
