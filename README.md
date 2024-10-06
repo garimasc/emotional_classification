@@ -8,7 +8,13 @@ This project aims to develop a robust classification model to identify predomina
 
  Understanding emotion in English texts is fascinating because it unlocks insights into human feelings, intentions, and social dynamics that are often subtle and complex.The initial idea behind this project was sparked by watching *Inside Out 2* earlier this summer, and my motivation here is to strengthen my foundation in classification techniques, and build my skill-set in text analytics and Natural Language Processing (NLP).
 
- By analyzing emotional undertones, NLP can enhance user experiences across various applications, such as improving customer service through empathetic responses, refining content recommendations based on emotional context, and so on. This capability not only helps in personalizing interactions but also in building more intuitive and supportive technologies that resonate with users on a deeper level.
+
+ #### Business Applications/Use Cases:
+A model that can detect emotions in texts has valuable business applications, particularly in **human resources**. By analyzing employee engagement surveys or feedback, companies can detect emotions like *anger* or *sadness*, identifying areas of discontentment. This could then be used to improve workplace morale and productivity, and to decrease attrition rates in organizations.
+
+In **customer service**, emotion detection in support tickets or social media can help prioritize more urgent issues. Additionally, in **marketing**, classifying emotions in user-generated content can enhance recommendation systems and ad targeting. For instance, identifying emotions like *joy* or *love* can help brands engage more with supporters of the product/service.
+
+I believe that emotion detection can support more personalized and emotionally intelligent decision-making.
 
 ## Data Overview
 The data for this project was sourced from 3 different labeled Kaggle datasets:
@@ -213,4 +219,4 @@ Moving forward, we can incorporate several techniques to increase the model clas
 
 3. Model Interpretability: Conducting a deeper error analysis will help identify patterns in misclassifications, particularly in cases where emotions like *love* and *joy* overlap.
 
-4. Real-Time Classification: Finally, integrating the model into a real-time emotion detection system for applications like sentiment analysis in customer service or social media monitoring could demonstrate its practical utility. Fine-tuning the model for such applications and evaluating its performance on live data will be the ultimate test of its effectiveness.
+4. Real-Time Classification: A real-time model can be integrated using data pipelines that stream survey responses, customer chats, etc into the model via Rest APIs. The model couls be hosted on cloud services (e.g., AWS Lambda) to process incoming text via BERT embeddings or custom NLP pipelines. Classified emotions can trigger automated actions like escalating tickets or generating alerts by integration with CRM or HR platforms.
