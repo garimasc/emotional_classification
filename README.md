@@ -213,10 +213,10 @@ A few things I would like to highlight here:
 ## Next Steps
 Moving forward, we can incorporate several techniques to increase the model classification and interpretation:
 
-1. Class Imbalance: To better handle underrepresented emotions like *surprise* and *love*, we will explore techniques such as oversampling (e.g., SMOTE), undersampling the majority classes, and adjusting class weights in the loss function. These methods can help improve recall for minority classes without sacrificing overall accuracy.
+**1. Class Imbalance**: To better handle underrepresented emotions like *surprise* and *love*, we will explore techniques such as oversampling (e.g., SMOTE), undersampling the majority classes, and adjusting class weights in the loss function. These methods can help improve recall for minority classes without sacrificing overall accuracy.
 
-2. Data Augmentation: As I mentioned before, while we have a large number of samples, most of them share a specific structure and a limited vocabulary. We would like to expand the dataset to include more varied sources of emotion-labeled texts to increase generalizability.
+**2. Data Augmentation**: As mentioned before, while we have a large number of samples, most of them share a specific structure and a limited vocabulary. We would like to expand the dataset to include more varied sources of emotion-labeled texts to increase generalizability.
 
-3. Model Interpretability: Conducting a deeper error analysis will help identify patterns in misclassifications, particularly in cases where emotions like *love* and *joy* overlap.
+**3. Model Interpretability**: Conducting a deeper error analysis will help identify patterns in misclassifications, particularly in cases where emotions like *love* and *joy* overlap.
 
-4. Real-Time Classification: A real-time model can be integrated using data pipelines that stream survey responses, customer chats, etc into the model via Rest APIs. The model couls be hosted on cloud services (e.g., AWS Lambda) to process incoming text via BERT embeddings or custom NLP pipelines. Classified emotions can trigger automated actions like escalating tickets or generating alerts by integration with CRM or HR platforms.
+**4. Real-Time Classification**: A real-time model can be integrated using data pipelines that stream survey responses, customer chats, etc into the model via Rest APIs. The model could be hosted on cloud services (e.g., AWS Lambda) to process incoming text via BERT embeddings or custom NLP pipelines. Classified emotions can trigger automated actions like escalating tickets or generating alerts by integration with CRM or HR platforms.
